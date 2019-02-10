@@ -33,7 +33,34 @@ def p_type(p):
   type  : INTEGER 
         | FLOATING
   '''
-  p[0] = p[1]
+
+def p_bloque(p):
+  '''
+  bloque  : OPENKEY estatuto CLOSEKEY
+  '''
+
+def p_estatuto(p):
+  '''
+  estatuto  : estatuto_2nd estatuto_3rd
+  '''
+
+def p_estatuto_2nd(p):
+  '''
+  estatuto_2nd  : asignacion
+                | condicion
+                | escritura
+  '''
+
+def p_estatuto_3rd(p):
+  '''
+  estatuto_3rd  : empty
+                | estatuto
+  '''
+
+def p_asignacion(p):
+  '''
+  asignacion  : ID EQUAL expresion SEMICOLON
+  '''
 
 def p_expression(p):
   '''
@@ -50,10 +77,31 @@ def p_expression_2nd(p):
 
 def p_escritura(p):
   '''
-  escritura : print OPENPARENTHESIS expression CLOSEPARENTHESIS ;
-            | 
+  escritura : print OPENPARENTHESIS escritura_2nd CLOSEPARENTHESIS ;
   '''
-  print(p[2])
+
+def p_escritura_2nd(p):
+  '''
+  escritura_2nd : expression escritura_3rd
+                | CTE_STRING escritura_3rd
+  '''
+
+def p_escritura_3rd(p):
+  '''
+  escritura_3rd : empty
+                | COMMA escritura_2nd
+  '''
+
+def p_condicion(p):
+  '''
+  condicion : IF OPENPARENTHESIS expression CLOSEPARENTHESIS bloque condicion_2nd SEMICOLON
+  '''
+
+def p_condicion_2nd(p):
+  '''
+  p_condicion_2nd : empty
+                  | ELSE bloque
+  '''
 
 def p_exp(p):
   '''
@@ -93,12 +141,13 @@ def p_var_cte(p):
           | CTE_L
           | CTE_F
   '''
-  p[0] = p[1]
 
 def p_empty(p):
   '''
   empty : 
   '''
+
+parser = yacc.yacc()
 
 while True:
   try:
