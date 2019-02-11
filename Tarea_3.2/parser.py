@@ -1,4 +1,5 @@
 import ply.yacc as yacc
+from lexer import tokens
 
 def p_program(p):
   '''
@@ -28,9 +29,9 @@ def p_vars_3rd(p):
             | vars_2nd
   '''
 
-def p_type(p):
+def p_tipo(p):
   '''
-  type  : INTEGER 
+  tipo  : INTEGER 
         | FLOATING
   '''
 
@@ -62,14 +63,14 @@ def p_asignacion(p):
   asignacion  : ID EQUAL expresion SEMICOLON
   '''
 
-def p_expression(p):
+def p_expresion(p):
   '''
-  expression :  exp expression_2nd
+  expresion :  exp expresion_2nd
   '''
 
-def p_expression_2nd(p):
+def p_expresion_2nd(p):
   '''
-  exxpression_2nd : empty
+  expresion_2nd : empty
                   | LESSTHAN exp
                   | MORETHAN exp
                   | DIFFERENT exp
@@ -77,12 +78,12 @@ def p_expression_2nd(p):
 
 def p_escritura(p):
   '''
-  escritura : print OPENPARENTHESIS escritura_2nd CLOSEPARENTHESIS ;
+  escritura : PRINT OPENPARENTHESIS escritura_2nd CLOSEPARENTHESIS SEMICOLON
   '''
 
 def p_escritura_2nd(p):
   '''
-  escritura_2nd : expression escritura_3rd
+  escritura_2nd : expresion escritura_3rd
                 | CTE_STRING escritura_3rd
   '''
 
@@ -94,12 +95,12 @@ def p_escritura_3rd(p):
 
 def p_condicion(p):
   '''
-  condicion : IF OPENPARENTHESIS expression CLOSEPARENTHESIS bloque condicion_2nd SEMICOLON
+  condicion : IF OPENPARENTHESIS expresion CLOSEPARENTHESIS bloque condicion_2nd SEMICOLON
   '''
 
 def p_condicion_2nd(p):
   '''
-  p_condicion_2nd : empty
+  condicion_2nd : empty
                   | ELSE bloque
   '''
 
@@ -123,13 +124,13 @@ def p_termino(p):
 def p_termino_2nd(p):
   '''
   termino_2nd : empty
-              | * termino
-              | / termino
+              | MULTIPLY termino
+              | DIVIDE termino
   '''
 
 def p_factor(p):
   '''
-  factor  : OPENPARENTHESIS expression CLOSEPARENTHESIS
+  factor  : OPENPARENTHESIS expresion CLOSEPARENTHESIS
           | var_cte
           | PLUS var_cte
           | MINUS var_cte 
@@ -138,19 +139,23 @@ def p_factor(p):
 def p_var_cte(p):
   '''
   var_cte : ID
-          | CTE_L
-          | CTE_F
+          | CTE_INT
+          | CTE_FLOAT
   '''
 
 def p_empty(p):
   '''
   empty : 
   '''
+  pass
+
+def p_error(p):
+  print("Syntax error")
 
 parser = yacc.yacc()
 
 while True:
   try:
-    s = input('')
+    s = input('parser: ')
   except EOFError:
     break

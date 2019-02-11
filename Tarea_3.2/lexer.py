@@ -6,8 +6,9 @@ tokens = [
   'SEMICOLON',
   'COMMA',
   'DOUBLEDOT',
-  'INT',
-  'FLOAT',
+  'CTE_INT',
+  'CTE_FLOAT',
+  'CTE_STRING',
   'OPENKEY',
   'CLOSEKEY',
   'EQUAL',
@@ -28,11 +29,8 @@ reserved = {
   'int' : 'INTEGER',
   'float' : 'FLOATING',
   'print' : 'PRINT',
-  'cte\.string' : 'CTE_STRING',
   'if' : 'IF',
   'else' : 'ELSE',
-  'cte l' : 'CTE_L',
-  'cte f' : 'CTE_F'
 }
 
 t_SEMICOLON = r'\;'
@@ -53,19 +51,20 @@ t_DIVIDE = r'\/'
 
 t_ignore = r' '
 
-def t_INT(t):
-  r'\d+'
-  t.value = int(t.value)
-  return t
-
-def t_FLOAT(t):
+def t_CTE_FLOAT(t):
   r'\d+\.\d+'
   t.value = float(t.value)
   return t
 
+def t_CTE_INT(t):
+  r'\d+'
+  t.value = int(t.value)
+  return t
+
 def t_CTE_STRING(t):
-  r'cte\.string'
+  r"\'[^']*\'"
   t.type = reserved.get(t.value, 'CTE_STRING')
+  t.value = t.value[1:-1]
   return t
 
 def t_ID(t):
@@ -80,3 +79,13 @@ def t_error(t):
 tokens = tokens + list(reserved.values())
 
 lexer = lex.lex()
+
+# lexer.input("123.45")
+# lexer.input("12345")
+# lexer.input("'12 3 45'")
+
+# while True:
+#   tok = lexer.token()
+#   if not tok:
+#     break
+#   print(tok)
