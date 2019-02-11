@@ -83,7 +83,8 @@ lexer = lex.lex()
 # lexer.input("123.45")
 # lexer.input("12345")
 # lexer.input("'12 3 45'")
-
+# lexer.input("program test : { }")
+#
 # while True:
 #   tok = lexer.token()
 #   if not tok:

@@ -39,9 +39,9 @@ Rule 33    exp_2nd -> empty
 Rule 34    exp_2nd -> PLUS exp
 Rule 35    exp_2nd -> MINUS exp
 Rule 36    termino -> factor termino_2nd
-Rule 37    termino_2nd -> empty
-Rule 38    termino_2nd -> MULTIPLY termino
-Rule 39    termino_2nd -> DIVIDE termino
+Rule 37    termino_2nd -> MULTIPLY termino
+Rule 38    termino_2nd -> DIVIDE termino
+Rule 39    termino_2nd -> empty
 Rule 40    factor -> OPENPARENTHESIS expresion CLOSEPARENTHESIS
 Rule 41    factor -> var_cte
 Rule 42    factor -> PLUS var_cte
@@ -60,7 +60,7 @@ CTE_FLOAT            : 46
 CTE_INT              : 45
 CTE_STRING           : 26
 DIFFERENT            : 23
-DIVIDE               : 39
+DIVIDE               : 38
 DOUBLEDOT            : 1 6
 ELSE                 : 31
 EQUAL                : 18
@@ -71,7 +71,7 @@ INTEGER              : 9
 LESSTHAN             : 21
 MINUS                : 35 43
 MORETHAN             : 22
-MULTIPLY             : 38
+MULTIPLY             : 37
 OPENKEY              : 11
 OPENPARENTHESIS      : 24 29 40
 PLUS                 : 34 42
@@ -87,7 +87,7 @@ asignacion           : 13
 bloque               : 2 3 29 31
 condicion            : 14
 condicion_2nd        : 29
-empty                : 7 16 20 27 30 33 37
+empty                : 7 16 20 27 30 33 39
 escritura            : 15
 escritura_2nd        : 24 28
 escritura_3rd        : 25 26
@@ -101,7 +101,7 @@ expresion_2nd        : 19
 factor               : 36
 program              : 0
 program_2nd          : 1
-termino              : 32 38 39
+termino              : 32 37 38
 termino_2nd          : 36
 tipo                 : 6
 var_cte              : 41 42 43
@@ -518,13 +518,13 @@ state 33
 state 34
 
     (36) termino -> factor . termino_2nd
-    (37) termino_2nd -> . empty
-    (38) termino_2nd -> . MULTIPLY termino
-    (39) termino_2nd -> . DIVIDE termino
+    (37) termino_2nd -> . MULTIPLY termino
+    (38) termino_2nd -> . DIVIDE termino
+    (39) termino_2nd -> . empty
     (47) empty -> .
 
-    MULTIPLY        shift and go to state 61
-    DIVIDE          shift and go to state 62
+    MULTIPLY        shift and go to state 60
+    DIVIDE          shift and go to state 61
     PLUS            reduce using rule 47 (empty -> .)
     MINUS           reduce using rule 47 (empty -> .)
     LESSTHAN        reduce using rule 47 (empty -> .)
@@ -535,7 +535,7 @@ state 34
     COMMA           reduce using rule 47 (empty -> .)
 
     termino_2nd                    shift and go to state 59
-    empty                          shift and go to state 60
+    empty                          shift and go to state 62
 
 state 35
 
@@ -899,21 +899,7 @@ state 59
 
 state 60
 
-    (37) termino_2nd -> empty .
-
-    PLUS            reduce using rule 37 (termino_2nd -> empty .)
-    MINUS           reduce using rule 37 (termino_2nd -> empty .)
-    LESSTHAN        reduce using rule 37 (termino_2nd -> empty .)
-    MORETHAN        reduce using rule 37 (termino_2nd -> empty .)
-    DIFFERENT       reduce using rule 37 (termino_2nd -> empty .)
-    SEMICOLON       reduce using rule 37 (termino_2nd -> empty .)
-    CLOSEPARENTHESIS reduce using rule 37 (termino_2nd -> empty .)
-    COMMA           reduce using rule 37 (termino_2nd -> empty .)
-
-
-state 61
-
-    (38) termino_2nd -> MULTIPLY . termino
+    (37) termino_2nd -> MULTIPLY . termino
     (36) termino -> . factor termino_2nd
     (40) factor -> . OPENPARENTHESIS expresion CLOSEPARENTHESIS
     (41) factor -> . var_cte
@@ -934,9 +920,9 @@ state 61
     factor                         shift and go to state 34
     var_cte                        shift and go to state 36
 
-state 62
+state 61
 
-    (39) termino_2nd -> DIVIDE . termino
+    (38) termino_2nd -> DIVIDE . termino
     (36) termino -> . factor termino_2nd
     (40) factor -> . OPENPARENTHESIS expresion CLOSEPARENTHESIS
     (41) factor -> . var_cte
@@ -956,6 +942,20 @@ state 62
     termino                        shift and go to state 79
     factor                         shift and go to state 34
     var_cte                        shift and go to state 36
+
+state 62
+
+    (39) termino_2nd -> empty .
+
+    PLUS            reduce using rule 39 (termino_2nd -> empty .)
+    MINUS           reduce using rule 39 (termino_2nd -> empty .)
+    LESSTHAN        reduce using rule 39 (termino_2nd -> empty .)
+    MORETHAN        reduce using rule 39 (termino_2nd -> empty .)
+    DIFFERENT       reduce using rule 39 (termino_2nd -> empty .)
+    SEMICOLON       reduce using rule 39 (termino_2nd -> empty .)
+    CLOSEPARENTHESIS reduce using rule 39 (termino_2nd -> empty .)
+    COMMA           reduce using rule 39 (termino_2nd -> empty .)
+
 
 state 63
 
@@ -1133,30 +1133,30 @@ state 77
 
 state 78
 
-    (38) termino_2nd -> MULTIPLY termino .
+    (37) termino_2nd -> MULTIPLY termino .
 
-    PLUS            reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
-    MINUS           reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
-    LESSTHAN        reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
-    MORETHAN        reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
-    DIFFERENT       reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
-    SEMICOLON       reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
-    CLOSEPARENTHESIS reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
-    COMMA           reduce using rule 38 (termino_2nd -> MULTIPLY termino .)
+    PLUS            reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
+    MINUS           reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
+    LESSTHAN        reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
+    MORETHAN        reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
+    DIFFERENT       reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
+    SEMICOLON       reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
+    CLOSEPARENTHESIS reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
+    COMMA           reduce using rule 37 (termino_2nd -> MULTIPLY termino .)
 
 
 state 79
 
-    (39) termino_2nd -> DIVIDE termino .
+    (38) termino_2nd -> DIVIDE termino .
 
-    PLUS            reduce using rule 39 (termino_2nd -> DIVIDE termino .)
-    MINUS           reduce using rule 39 (termino_2nd -> DIVIDE termino .)
-    LESSTHAN        reduce using rule 39 (termino_2nd -> DIVIDE termino .)
-    MORETHAN        reduce using rule 39 (termino_2nd -> DIVIDE termino .)
-    DIFFERENT       reduce using rule 39 (termino_2nd -> DIVIDE termino .)
-    SEMICOLON       reduce using rule 39 (termino_2nd -> DIVIDE termino .)
-    CLOSEPARENTHESIS reduce using rule 39 (termino_2nd -> DIVIDE termino .)
-    COMMA           reduce using rule 39 (termino_2nd -> DIVIDE termino .)
+    PLUS            reduce using rule 38 (termino_2nd -> DIVIDE termino .)
+    MINUS           reduce using rule 38 (termino_2nd -> DIVIDE termino .)
+    LESSTHAN        reduce using rule 38 (termino_2nd -> DIVIDE termino .)
+    MORETHAN        reduce using rule 38 (termino_2nd -> DIVIDE termino .)
+    DIFFERENT       reduce using rule 38 (termino_2nd -> DIVIDE termino .)
+    SEMICOLON       reduce using rule 38 (termino_2nd -> DIVIDE termino .)
+    CLOSEPARENTHESIS reduce using rule 38 (termino_2nd -> DIVIDE termino .)
+    COMMA           reduce using rule 38 (termino_2nd -> DIVIDE termino .)
 
 
 state 80
