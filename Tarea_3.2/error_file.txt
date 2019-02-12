@@ -1,4 +1,5 @@
 program test : 
+sdaf 2
 var x : int; 
 {
     print('variable');

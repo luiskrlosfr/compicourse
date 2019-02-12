@@ -208,18 +208,11 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-# Read from file each line as an input and evaluate if the grammar is acceptable or not. If it is accepatble, print
-# the parsed line. If not, print None and print that there was an error in grammar
+# Read file as an input and evaluate if the grammar is acceptable or not. Print a message if it finds an error
+# in the grammar.
 print("Teclea el nombre del archivo de texto")
 name = input('parser >> ')
-f = open(name).readlines()
-for line in f:
-  print("Expresion -> " + line)
-  result = parser.parse(line.rstrip('\n'))
-  print("Parser -> " + str(result))
-  print("---------------------------------")
 
-# Test file contains:
-# program test : var x : int; {print('variable');} = Accepted
-# program test : {} = Accepted
-# test program var : int = Not Accepted
+with open(name, 'r') as myfile:
+  line = myfile.read().replace('\n', '')
+  result = parser.parse(line)
