@@ -50,6 +50,7 @@ def p_tipo(p):
 def p_bloque(p):
   '''
   bloque  : OPENKEY estatuto CLOSEKEY
+          | OPENKEY empty CLOSEKEY
   '''
   p[0] = p[1] + " " + p[2] + " " + p[3]
 
@@ -198,15 +199,23 @@ def p_empty(p):
   p[0] = ""
 
 def p_error(p):
-  print("Syntax error")
+  print("Error en la gramática")
 
 parser = yacc.yacc()
 
-while True:
-  try:
-    s = input('parser >> ')
-  except EOFError:
-    break
-  if not s: continue
-  result = parser.parse(s)
-  print(result)
+print("Teclea el nombre del archivo de texto")
+name = input('parser >> ')
+f = open(name).readlines()
+for line in f:
+  print("Expresion: " + line)
+  result = parser.parse(line)
+  print("Parser: " + str(result))
+# while True:
+#   try:
+#     s = f.readline()
+#   except EOFError:
+#     break
+#   if not s: continue
+#   result = parser.parse(s)
+#   print(result)
+# Tarea_3.2/file.txt

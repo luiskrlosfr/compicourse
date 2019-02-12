@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CLOSEKEY CLOSEPARENTHESIS COMMA CTE_FLOAT CTE_INT CTE_STRING DIFFERENT DIVIDE DOUBLEDOT ELSE EQUAL FLOATING ID IF INTEGER LESSTHAN MINUS MORETHAN MULTIPLY OPENKEY OPENPARENTHESIS PLUS PRINT PROGRAM SEMICOLON VAR\n  program : PROGRAM ID DOUBLEDOT program_2nd\n  \n  program_2nd : bloque\n              | vars bloque\n  \n  vars : VAR vars_2nd\n  \n  vars_2nd  : ID COMMA vars_2nd\n            | ID DOUBLEDOT tipo SEMICOLON vars_3rd\n  \n  vars_3rd  : empty\n            | vars_2nd\n  \n  tipo  : INTEGER \n        | FLOATING\n  \n  bloque  : OPENKEY estatuto CLOSEKEY\n  \n  estatuto  : estatuto_2nd estatuto_3rd\n  \n  estatuto_2nd  : asignacion\n                | condicion\n                | escritura\n  \n  estatuto_3rd  : empty\n                | estatuto\n  \n  asignacion  : ID EQUAL expresion SEMICOLON\n  \n  expresion :  exp expresion_2nd\n  \n  expresion_2nd : empty\n                  | LESSTHAN exp\n                  | MORETHAN exp\n                  | DIFFERENT exp\n  \n  escritura : PRINT OPENPARENTHESIS escritura_2nd CLOSEPARENTHESIS SEMICOLON\n  \n  escritura_2nd : expresion escritura_3rd\n                | CTE_STRING escritura_3rd\n  \n  escritura_3rd : empty\n                | COMMA escritura_2nd\n  \n  condicion : IF OPENPARENTHESIS expresion CLOSEPARENTHESIS bloque condicion_2nd SEMICOLON\n  \n  condicion_2nd : empty\n                  | ELSE bloque\n  \n  exp : termino exp_2nd\n  \n  exp_2nd : empty\n          | PLUS exp\n          | MINUS exp\n  \n  termino : factor termino_2nd\n  \n  termino_2nd : MULTIPLY termino\n              | DIVIDE termino\n              | empty\n  \n  factor  : OPENPARENTHESIS expresion CLOSEPARENTHESIS\n          | var_cte\n          | PLUS var_cte\n          | MINUS var_cte \n  \n  var_cte : ID\n          | CTE_INT\n          | CTE_FLOAT\n  \n  empty : \n  '
+_lr_signature = 'CLOSEKEY CLOSEPARENTHESIS COMMA CTE_FLOAT CTE_INT CTE_STRING DIFFERENT DIVIDE DOUBLEDOT ELSE EQUAL FLOATING ID IF INTEGER LESSTHAN MINUS MORETHAN MULTIPLY OPENKEY OPENPARENTHESIS PLUS PRINT PROGRAM SEMICOLON VAR\n  program : PROGRAM ID DOUBLEDOT program_2nd\n  \n  program_2nd : bloque\n              | vars bloque\n  \n  vars : VAR vars_2nd\n  \n  vars_2nd  : ID COMMA vars_2nd\n            | ID DOUBLEDOT tipo SEMICOLON vars_3rd\n  \n  vars_3rd  : empty\n            | vars_2nd\n  \n  tipo  : INTEGER \n        | FLOATING\n  \n  bloque  : OPENKEY estatuto CLOSEKEY\n          | OPENKEY empty CLOSEKEY\n  \n  estatuto  : estatuto_2nd estatuto_3rd\n  \n  estatuto_2nd  : asignacion\n                | condicion\n                | escritura\n  \n  estatuto_3rd  : empty\n                | estatuto\n  \n  asignacion  : ID EQUAL expresion SEMICOLON\n  \n  expresion :  exp expresion_2nd\n  \n  expresion_2nd : empty\n                  | LESSTHAN exp\n                  | MORETHAN exp\n                  | DIFFERENT exp\n  \n  escritura : PRINT OPENPARENTHESIS escritura_2nd CLOSEPARENTHESIS SEMICOLON\n  \n  escritura_2nd : expresion escritura_3rd\n                | CTE_STRING escritura_3rd\n  \n  escritura_3rd : empty\n                | COMMA escritura_2nd\n  \n  condicion : IF OPENPARENTHESIS expresion CLOSEPARENTHESIS bloque condicion_2nd SEMICOLON\n  \n  condicion_2nd : empty\n                  | ELSE bloque\n  \n  exp : termino exp_2nd\n  \n  exp_2nd : empty\n          | PLUS exp\n          | MINUS exp\n  \n  termino : factor termino_2nd\n  \n  termino_2nd : MULTIPLY termino\n              | DIVIDE termino\n              | empty\n  \n  factor  : OPENPARENTHESIS expresion CLOSEPARENTHESIS\n          | var_cte\n          | PLUS var_cte\n          | MINUS var_cte \n  \n  var_cte : ID\n          | CTE_INT\n          | CTE_FLOAT\n  \n  empty : \n  '
     
-_lr_action_items = {'PROGRAM':([0,],[2,]),'$end':([1,5,6,10,21,],[0,-1,-2,-3,-11,]),'ID':([2,8,9,12,13,14,15,25,26,27,28,35,37,38,49,52,53,54,57,58,60,61,70,72,82,90,],[3,16,20,16,-13,-14,-15,30,30,30,20,30,30,30,-18,30,30,30,30,30,30,30,30,20,-24,-29,]),'DOUBLEDOT':([3,20,],[4,29,]),'OPENKEY':([4,7,19,45,66,72,84,85,86,89,],[8,8,-4,-5,8,-47,-6,-7,-8,8,]),'VAR':([4,],[9,]),'IF':([8,12,13,14,15,49,82,90,],[17,17,-13,-14,-15,-18,-24,-29,]),'PRINT':([8,12,13,14,15,49,82,90,],[18,18,-13,-14,-15,-18,-24,-29,]),'CLOSEKEY':([11,12,13,14,15,22,23,24,49,82,90,],[21,-47,-13,-14,-15,-12,-16,-17,-18,-24,-29,]),'EQUAL':([16,],[25,]),'OPENPARENTHESIS':([17,18,25,26,27,35,52,53,54,57,58,60,61,70,],[26,27,35,35,35,35,35,35,35,35,35,35,35,35,]),'COMMA':([20,30,32,33,34,36,39,40,43,44,50,51,55,56,59,62,64,65,73,74,75,76,77,78,79,80,],[28,-44,-47,-47,-47,-41,-45,-46,70,70,-19,-20,-32,-33,-36,-39,-42,-43,-21,-22,-23,-34,-35,-37,-38,-40,]),'ELSE':([21,81,],[-11,89,]),'SEMICOLON':([21,30,31,32,33,34,36,39,40,46,47,48,50,51,55,56,59,62,64,65,67,73,74,75,76,77,78,79,80,81,87,88,91,],[-11,-44,49,-47,-47,-47,-41,-45,-46,72,-9,-10,-19,-20,-32,-33,-36,-39,-42,-43,82,-21,-22,-23,-34,-35,-37,-38,-40,-47,90,-30,-31,]),'PLUS':([25,26,27,30,33,34,35,36,39,40,52,53,54,57,58,59,60,61,62,64,65,70,78,79,80,],[37,37,37,-44,57,-47,37,-41,-45,-46,37,37,37,37,37,-36,37,37,-39,-42,-43,37,-37,-38,-40,]),'MINUS':([25,26,27,30,33,34,35,36,39,40,52,53,54,57,58,59,60,61,62,64,65,70,78,79,80,],[38,38,38,-44,58,-47,38,-41,-45,-46,38,38,38,38,38,-36,38,38,-39,-42,-43,38,-37,-38,-40,]),'CTE_INT':([25,26,27,35,37,38,52,53,54,57,58,60,61,70,],[39,39,39,39,39,39,39,39,39,39,39,39,39,39,]),'CTE_FLOAT':([25,26,27,35,37,38,52,53,54,57,58,60,61,70,],[40,40,40,40,40,40,40,40,40,40,40,40,40,40,]),'CTE_STRING':([27,70,],[44,44,]),'INTEGER':([29,],[47,]),'FLOATING':([29,],[48,]),'MULTIPLY':([30,34,36,39,40,64,65,80,],[-44,60,-41,-45,-46,-42,-43,-40,]),'DIVIDE':([30,34,36,39,40,64,65,80,],[-44,61,-41,-45,-46,-42,-43,-40,]),'LESSTHAN':([30,32,33,34,36,39,40,55,56,59,62,64,65,76,77,78,79,80,],[-44,52,-47,-47,-41,-45,-46,-32,-33,-36,-39,-42,-43,-34,-35,-37,-38,-40,]),'MORETHAN':([30,32,33,34,36,39,40,55,56,59,62,64,65,76,77,78,79,80,],[-44,53,-47,-47,-41,-45,-46,-32,-33,-36,-39,-42,-43,-34,-35,-37,-38,-40,]),'DIFFERENT':([30,32,33,34,36,39,40,55,56,59,62,64,65,76,77,78,79,80,],[-44,54,-47,-47,-41,-45,-46,-32,-33,-36,-39,-42,-43,-34,-35,-37,-38,-40,]),'CLOSEPARENTHESIS':([30,32,33,34,36,39,40,41,42,43,44,50,51,55,56,59,62,63,64,65,68,69,71,73,74,75,76,77,78,79,80,83,],[-44,-47,-47,-47,-41,-45,-46,66,67,-47,-47,-19,-20,-32,-33,-36,-39,80,-42,-43,-25,-27,-26,-21,-22,-23,-34,-35,-37,-38,-40,-28,]),}
+_lr_action_items = {'PROGRAM':([0,],[2,]),'$end':([1,5,6,10,22,23,],[0,-1,-2,-3,-11,-12,]),'ID':([2,8,9,13,14,15,16,27,28,29,30,37,39,40,51,54,55,56,59,60,62,63,72,74,84,92,],[3,17,21,17,-14,-15,-16,32,32,32,21,32,32,32,-19,32,32,32,32,32,32,32,32,21,-25,-30,]),'DOUBLEDOT':([3,21,],[4,31,]),'OPENKEY':([4,7,20,47,68,74,86,87,88,91,],[8,8,-4,-5,8,-48,-6,-7,-8,8,]),'VAR':([4,],[9,]),'CLOSEKEY':([8,11,12,13,14,15,16,24,25,26,51,84,92,],[-48,22,23,-48,-14,-15,-16,-13,-17,-18,-19,-25,-30,]),'IF':([8,13,14,15,16,51,84,92,],[18,18,-14,-15,-16,-19,-25,-30,]),'PRINT':([8,13,14,15,16,51,84,92,],[19,19,-14,-15,-16,-19,-25,-30,]),'EQUAL':([17,],[27,]),'OPENPARENTHESIS':([18,19,27,28,29,37,54,55,56,59,60,62,63,72,],[28,29,37,37,37,37,37,37,37,37,37,37,37,37,]),'COMMA':([21,32,34,35,36,38,41,42,45,46,52,53,57,58,61,64,66,67,75,76,77,78,79,80,81,82,],[30,-45,-48,-48,-48,-42,-46,-47,72,72,-20,-21,-33,-34,-37,-40,-43,-44,-22,-23,-24,-35,-36,-38,-39,-41,]),'ELSE':([22,23,83,],[-11,-12,91,]),'SEMICOLON':([22,23,32,33,34,35,36,38,41,42,48,49,50,52,53,57,58,61,64,66,67,69,75,76,77,78,79,80,81,82,83,89,90,93,],[-11,-12,-45,51,-48,-48,-48,-42,-46,-47,74,-9,-10,-20,-21,-33,-34,-37,-40,-43,-44,84,-22,-23,-24,-35,-36,-38,-39,-41,-48,92,-31,-32,]),'PLUS':([27,28,29,32,35,36,37,38,41,42,54,55,56,59,60,61,62,63,64,66,67,72,80,81,82,],[39,39,39,-45,59,-48,39,-42,-46,-47,39,39,39,39,39,-37,39,39,-40,-43,-44,39,-38,-39,-41,]),'MINUS':([27,28,29,32,35,36,37,38,41,42,54,55,56,59,60,61,62,63,64,66,67,72,80,81,82,],[40,40,40,-45,60,-48,40,-42,-46,-47,40,40,40,40,40,-37,40,40,-40,-43,-44,40,-38,-39,-41,]),'CTE_INT':([27,28,29,37,39,40,54,55,56,59,60,62,63,72,],[41,41,41,41,41,41,41,41,41,41,41,41,41,41,]),'CTE_FLOAT':([27,28,29,37,39,40,54,55,56,59,60,62,63,72,],[42,42,42,42,42,42,42,42,42,42,42,42,42,42,]),'CTE_STRING':([29,72,],[46,46,]),'INTEGER':([31,],[49,]),'FLOATING':([31,],[50,]),'MULTIPLY':([32,36,38,41,42,66,67,82,],[-45,62,-42,-46,-47,-43,-44,-41,]),'DIVIDE':([32,36,38,41,42,66,67,82,],[-45,63,-42,-46,-47,-43,-44,-41,]),'LESSTHAN':([32,34,35,36,38,41,42,57,58,61,64,66,67,78,79,80,81,82,],[-45,54,-48,-48,-42,-46,-47,-33,-34,-37,-40,-43,-44,-35,-36,-38,-39,-41,]),'MORETHAN':([32,34,35,36,38,41,42,57,58,61,64,66,67,78,79,80,81,82,],[-45,55,-48,-48,-42,-46,-47,-33,-34,-37,-40,-43,-44,-35,-36,-38,-39,-41,]),'DIFFERENT':([32,34,35,36,38,41,42,57,58,61,64,66,67,78,79,80,81,82,],[-45,56,-48,-48,-42,-46,-47,-33,-34,-37,-40,-43,-44,-35,-36,-38,-39,-41,]),'CLOSEPARENTHESIS':([32,34,35,36,38,41,42,43,44,45,46,52,53,57,58,61,64,65,66,67,70,71,73,75,76,77,78,79,80,81,82,85,],[-45,-48,-48,-48,-42,-46,-47,68,69,-48,-48,-20,-21,-33,-34,-37,-40,82,-43,-44,-26,-28,-27,-22,-23,-24,-35,-36,-38,-39,-41,-29,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'program_2nd':([4,],[5,]),'bloque':([4,7,66,89,],[6,10,81,91,]),'vars':([4,],[7,]),'estatuto':([8,12,],[11,24,]),'estatuto_2nd':([8,12,],[12,12,]),'asignacion':([8,12,],[13,13,]),'condicion':([8,12,],[14,14,]),'escritura':([8,12,],[15,15,]),'vars_2nd':([9,28,72,],[19,45,86,]),'estatuto_3rd':([12,],[22,]),'empty':([12,32,33,34,43,44,72,81,],[23,51,56,62,69,69,85,88,]),'expresion':([25,26,27,35,70,],[31,41,43,63,43,]),'exp':([25,26,27,35,52,53,54,57,58,70,],[32,32,32,32,73,74,75,76,77,32,]),'termino':([25,26,27,35,52,53,54,57,58,60,61,70,],[33,33,33,33,33,33,33,33,33,78,79,33,]),'factor':([25,26,27,35,52,53,54,57,58,60,61,70,],[34,34,34,34,34,34,34,34,34,34,34,34,]),'var_cte':([25,26,27,35,37,38,52,53,54,57,58,60,61,70,],[36,36,36,36,64,65,36,36,36,36,36,36,36,36,]),'escritura_2nd':([27,70,],[42,83,]),'tipo':([29,],[46,]),'expresion_2nd':([32,],[50,]),'exp_2nd':([33,],[55,]),'termino_2nd':([34,],[59,]),'escritura_3rd':([43,44,],[68,71,]),'vars_3rd':([72,],[84,]),'condicion_2nd':([81,],[87,]),}
+_lr_goto_items = {'program':([0,],[1,]),'program_2nd':([4,],[5,]),'bloque':([4,7,68,91,],[6,10,83,93,]),'vars':([4,],[7,]),'estatuto':([8,13,],[11,26,]),'empty':([8,13,34,35,36,45,46,74,83,],[12,25,53,58,64,71,71,87,90,]),'estatuto_2nd':([8,13,],[13,13,]),'asignacion':([8,13,],[14,14,]),'condicion':([8,13,],[15,15,]),'escritura':([8,13,],[16,16,]),'vars_2nd':([9,30,74,],[20,47,88,]),'estatuto_3rd':([13,],[24,]),'expresion':([27,28,29,37,72,],[33,43,45,65,45,]),'exp':([27,28,29,37,54,55,56,59,60,72,],[34,34,34,34,75,76,77,78,79,34,]),'termino':([27,28,29,37,54,55,56,59,60,62,63,72,],[35,35,35,35,35,35,35,35,35,80,81,35,]),'factor':([27,28,29,37,54,55,56,59,60,62,63,72,],[36,36,36,36,36,36,36,36,36,36,36,36,]),'var_cte':([27,28,29,37,39,40,54,55,56,59,60,62,63,72,],[38,38,38,38,66,67,38,38,38,38,38,38,38,38,]),'escritura_2nd':([29,72,],[44,85,]),'tipo':([31,],[48,]),'expresion_2nd':([34,],[52,]),'exp_2nd':([35,],[57,]),'termino_2nd':([36,],[61,]),'escritura_3rd':([45,46,],[70,73,]),'vars_3rd':([74,],[86,]),'condicion_2nd':([83,],[89,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -38,40 +38,41 @@ _lr_productions = [
   ('tipo -> INTEGER','tipo',1,'p_tipo','parser.py',45),
   ('tipo -> FLOATING','tipo',1,'p_tipo','parser.py',46),
   ('bloque -> OPENKEY estatuto CLOSEKEY','bloque',3,'p_bloque','parser.py',52),
-  ('estatuto -> estatuto_2nd estatuto_3rd','estatuto',2,'p_estatuto','parser.py',58),
-  ('estatuto_2nd -> asignacion','estatuto_2nd',1,'p_estatuto_2nd','parser.py',64),
-  ('estatuto_2nd -> condicion','estatuto_2nd',1,'p_estatuto_2nd','parser.py',65),
-  ('estatuto_2nd -> escritura','estatuto_2nd',1,'p_estatuto_2nd','parser.py',66),
-  ('estatuto_3rd -> empty','estatuto_3rd',1,'p_estatuto_3rd','parser.py',72),
-  ('estatuto_3rd -> estatuto','estatuto_3rd',1,'p_estatuto_3rd','parser.py',73),
-  ('asignacion -> ID EQUAL expresion SEMICOLON','asignacion',4,'p_asignacion','parser.py',79),
-  ('expresion -> exp expresion_2nd','expresion',2,'p_expresion','parser.py',85),
-  ('expresion_2nd -> empty','expresion_2nd',1,'p_expresion_2nd','parser.py',91),
-  ('expresion_2nd -> LESSTHAN exp','expresion_2nd',2,'p_expresion_2nd','parser.py',92),
-  ('expresion_2nd -> MORETHAN exp','expresion_2nd',2,'p_expresion_2nd','parser.py',93),
-  ('expresion_2nd -> DIFFERENT exp','expresion_2nd',2,'p_expresion_2nd','parser.py',94),
-  ('escritura -> PRINT OPENPARENTHESIS escritura_2nd CLOSEPARENTHESIS SEMICOLON','escritura',5,'p_escritura','parser.py',103),
-  ('escritura_2nd -> expresion escritura_3rd','escritura_2nd',2,'p_escritura_2nd','parser.py',109),
-  ('escritura_2nd -> CTE_STRING escritura_3rd','escritura_2nd',2,'p_escritura_2nd','parser.py',110),
-  ('escritura_3rd -> empty','escritura_3rd',1,'p_escritura_3rd','parser.py',116),
-  ('escritura_3rd -> COMMA escritura_2nd','escritura_3rd',2,'p_escritura_3rd','parser.py',117),
-  ('condicion -> IF OPENPARENTHESIS expresion CLOSEPARENTHESIS bloque condicion_2nd SEMICOLON','condicion',7,'p_condicion','parser.py',126),
-  ('condicion_2nd -> empty','condicion_2nd',1,'p_condicion_2nd','parser.py',132),
-  ('condicion_2nd -> ELSE bloque','condicion_2nd',2,'p_condicion_2nd','parser.py',133),
-  ('exp -> termino exp_2nd','exp',2,'p_exp','parser.py',142),
-  ('exp_2nd -> empty','exp_2nd',1,'p_exp_2nd','parser.py',148),
-  ('exp_2nd -> PLUS exp','exp_2nd',2,'p_exp_2nd','parser.py',149),
-  ('exp_2nd -> MINUS exp','exp_2nd',2,'p_exp_2nd','parser.py',150),
-  ('termino -> factor termino_2nd','termino',2,'p_termino','parser.py',159),
-  ('termino_2nd -> MULTIPLY termino','termino_2nd',2,'p_termino_2nd','parser.py',165),
-  ('termino_2nd -> DIVIDE termino','termino_2nd',2,'p_termino_2nd','parser.py',166),
-  ('termino_2nd -> empty','termino_2nd',1,'p_termino_2nd','parser.py',167),
-  ('factor -> OPENPARENTHESIS expresion CLOSEPARENTHESIS','factor',3,'p_factor','parser.py',176),
-  ('factor -> var_cte','factor',1,'p_factor','parser.py',177),
-  ('factor -> PLUS var_cte','factor',2,'p_factor','parser.py',178),
-  ('factor -> MINUS var_cte','factor',2,'p_factor','parser.py',179),
-  ('var_cte -> ID','var_cte',1,'p_var_cte','parser.py',188),
-  ('var_cte -> CTE_INT','var_cte',1,'p_var_cte','parser.py',189),
-  ('var_cte -> CTE_FLOAT','var_cte',1,'p_var_cte','parser.py',190),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',196),
+  ('bloque -> OPENKEY empty CLOSEKEY','bloque',3,'p_bloque','parser.py',53),
+  ('estatuto -> estatuto_2nd estatuto_3rd','estatuto',2,'p_estatuto','parser.py',59),
+  ('estatuto_2nd -> asignacion','estatuto_2nd',1,'p_estatuto_2nd','parser.py',65),
+  ('estatuto_2nd -> condicion','estatuto_2nd',1,'p_estatuto_2nd','parser.py',66),
+  ('estatuto_2nd -> escritura','estatuto_2nd',1,'p_estatuto_2nd','parser.py',67),
+  ('estatuto_3rd -> empty','estatuto_3rd',1,'p_estatuto_3rd','parser.py',73),
+  ('estatuto_3rd -> estatuto','estatuto_3rd',1,'p_estatuto_3rd','parser.py',74),
+  ('asignacion -> ID EQUAL expresion SEMICOLON','asignacion',4,'p_asignacion','parser.py',80),
+  ('expresion -> exp expresion_2nd','expresion',2,'p_expresion','parser.py',86),
+  ('expresion_2nd -> empty','expresion_2nd',1,'p_expresion_2nd','parser.py',92),
+  ('expresion_2nd -> LESSTHAN exp','expresion_2nd',2,'p_expresion_2nd','parser.py',93),
+  ('expresion_2nd -> MORETHAN exp','expresion_2nd',2,'p_expresion_2nd','parser.py',94),
+  ('expresion_2nd -> DIFFERENT exp','expresion_2nd',2,'p_expresion_2nd','parser.py',95),
+  ('escritura -> PRINT OPENPARENTHESIS escritura_2nd CLOSEPARENTHESIS SEMICOLON','escritura',5,'p_escritura','parser.py',104),
+  ('escritura_2nd -> expresion escritura_3rd','escritura_2nd',2,'p_escritura_2nd','parser.py',110),
+  ('escritura_2nd -> CTE_STRING escritura_3rd','escritura_2nd',2,'p_escritura_2nd','parser.py',111),
+  ('escritura_3rd -> empty','escritura_3rd',1,'p_escritura_3rd','parser.py',117),
+  ('escritura_3rd -> COMMA escritura_2nd','escritura_3rd',2,'p_escritura_3rd','parser.py',118),
+  ('condicion -> IF OPENPARENTHESIS expresion CLOSEPARENTHESIS bloque condicion_2nd SEMICOLON','condicion',7,'p_condicion','parser.py',127),
+  ('condicion_2nd -> empty','condicion_2nd',1,'p_condicion_2nd','parser.py',133),
+  ('condicion_2nd -> ELSE bloque','condicion_2nd',2,'p_condicion_2nd','parser.py',134),
+  ('exp -> termino exp_2nd','exp',2,'p_exp','parser.py',143),
+  ('exp_2nd -> empty','exp_2nd',1,'p_exp_2nd','parser.py',149),
+  ('exp_2nd -> PLUS exp','exp_2nd',2,'p_exp_2nd','parser.py',150),
+  ('exp_2nd -> MINUS exp','exp_2nd',2,'p_exp_2nd','parser.py',151),
+  ('termino -> factor termino_2nd','termino',2,'p_termino','parser.py',160),
+  ('termino_2nd -> MULTIPLY termino','termino_2nd',2,'p_termino_2nd','parser.py',166),
+  ('termino_2nd -> DIVIDE termino','termino_2nd',2,'p_termino_2nd','parser.py',167),
+  ('termino_2nd -> empty','termino_2nd',1,'p_termino_2nd','parser.py',168),
+  ('factor -> OPENPARENTHESIS expresion CLOSEPARENTHESIS','factor',3,'p_factor','parser.py',177),
+  ('factor -> var_cte','factor',1,'p_factor','parser.py',178),
+  ('factor -> PLUS var_cte','factor',2,'p_factor','parser.py',179),
+  ('factor -> MINUS var_cte','factor',2,'p_factor','parser.py',180),
+  ('var_cte -> ID','var_cte',1,'p_var_cte','parser.py',189),
+  ('var_cte -> CTE_INT','var_cte',1,'p_var_cte','parser.py',190),
+  ('var_cte -> CTE_FLOAT','var_cte',1,'p_var_cte','parser.py',191),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',197),
 ]
