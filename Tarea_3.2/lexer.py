@@ -1,6 +1,10 @@
+# Luis Carlos Figueroa Rodríguez, A01113431
+# 11/02/2019
+
 import ply.lex as lex
 import sys
 
+# Define tokens
 tokens = [
   'ID',
   'SEMICOLON',
@@ -23,6 +27,7 @@ tokens = [
   'DIVIDE'
 ]
 
+# Define reserved words (terminals) with their respective TOKEN
 reserved = {
   'program' : 'PROGRAM',
   'var' : 'VAR',
@@ -33,6 +38,7 @@ reserved = {
   'else' : 'ELSE',
 }
 
+# Define simple terminal tokens
 t_SEMICOLON = r'\;'
 t_COMMA = r'\,'
 t_DOUBLEDOT = r'\:'
@@ -51,6 +57,7 @@ t_DIVIDE = r'\/'
 
 t_ignore = r' '
 
+# Define complex terminal tokens
 def t_CTE_FLOAT(t):
   r'\d+\.\d+'
   t.value = float(t.value)
@@ -76,17 +83,15 @@ def t_error(t):
   print("Esos caracteres no forman parte del lenguaje")
   t.lexer.skip(1)
 
+# Combine tokens with reserved words tokens
 tokens = tokens + list(reserved.values())
 
+# Build the lexer
 lexer = lex.lex()
 
-# lexer.input("123.45")
-# lexer.input("12345")
-# lexer.input("'12 3 45'")
-# lexer.input("program test : { }")
-#
-# while True:
-#   tok = lexer.token()
-#   if not tok:
-#     break
-#   print(tok)
+# Some Tests
+# lexer.input("123.45") -> CTE_FLOAT token
+# lexer.input("12345") -> CTE_INT token
+# lexer.input("'12 3 45'") -> CTE_STRING token
+# lexer.input("program test : { }") -> PROGRAM ID DOUBLEDOT OPENKEY CLOSEKEY tokens
+# lexer.input("+ - * / = ; ,") -> PLUS MINUS MULTIPLY DIVIDE EQUAL SEMICOLON COMMA tokens

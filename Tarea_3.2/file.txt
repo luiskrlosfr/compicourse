@@ -1,0 +1,3 @@
+program test : var x : int; {print('variable');}
+program test : {}
+test program var : int

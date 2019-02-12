@@ -1,6 +1,10 @@
+# Luis Carlos Figueroa Rodríguez, A01113431
+# 11/02/2019
+
 import ply.yacc as yacc
 from lexer import tokens
 
+# Define the grammar rules. The first function is the initial state
 def p_program(p):
   '''
   program : PROGRAM ID DOUBLEDOT program_2nd
@@ -201,21 +205,21 @@ def p_empty(p):
 def p_error(p):
   print("Error en la gramática")
 
+# Build the parser
 parser = yacc.yacc()
 
+# Read from file each line as an input and evaluate if the grammar is acceptable or not. If it is accepatble, print
+# the parsed line. If not, print None and print that there was an error in grammar
 print("Teclea el nombre del archivo de texto")
 name = input('parser >> ')
 f = open(name).readlines()
 for line in f:
-  print("Expresion: " + line)
-  result = parser.parse(line)
-  print("Parser: " + str(result))
-# while True:
-#   try:
-#     s = f.readline()
-#   except EOFError:
-#     break
-#   if not s: continue
-#   result = parser.parse(s)
-#   print(result)
-# Tarea_3.2/file.txt
+  print("Expresion -> " + line)
+  result = parser.parse(line.rstrip('\n'))
+  print("Parser -> " + str(result))
+  print("---------------------------------")
+
+# Test file contains:
+# program test : var x : int; {print('variable');} = Accepted
+# program test : {} = Accepted
+# test program var : int = Not Accepted
